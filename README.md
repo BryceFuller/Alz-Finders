@@ -8,50 +8,50 @@ Predicting the onset of Alzheimer's Disease using MRI &amp; PET scans.
 **For every step, make certain that you document your steps and save your code in a jupyter notebook. **
 
 ### <font color='red'>(0) </font> 
-$\bullet$ GET ACCESS TO ADNI (Ghosh has been emailed)
+* GET ACCESS TO ADNI (Ghosh has been emailed)
 
-$\bullet$ Figure out how the data is formatted and how we access it
+* Figure out how the data is formatted and how we access it
 
-$\hspace{10mm}\bullet$ If neccessary, write a pice of code which reformats or gives access to the Dataset
+* If neccessary, write a pice of code which reformats or gives access to the Dataset
 
-$\bullet$ Research how the authors removed pixels outside the brain (CHECK INTO MRIQC)
+* Research how the authors removed pixels outside the brain (CHECK INTO MRIQC)
 
-$\bullet$ Find tool to downsample images to 128x128x128 voxels
+* Find tool to downsample images to 128x128x128 voxels
 
-$\bullet$ Find (or write) tool to segment 3D images into 27 blocks
+* Find (or write) tool to segment 3D images into 27 blocks
 
 
 
 ### <font color='red'>(1) </font> 
-$\bullet$ Understand how to the Kernel Filters are learned
+* Understand how to the Kernel Filters are learned
 
-$\bullet$ Find a robust package for 3D CNN's, ideally with the flexibility to use Lui's parameters
+* Find a robust package for 3D CNN's, ideally with the flexibility to use Lui's parameters
 
-$\bullet$ Optional but probably neccesary: Figure out a clean way to distribute the training of these models (all 27 3D-CNN's can be trained in parallel)
+* Optional but probably neccesary: Figure out a clean way to distribute the training of these models (all 27 3D-CNN's can be trained in parallel)
 
 
 ### <font color='red'>(2) </font> 
-$\bullet$ This one seems eerily straightfoward to me, I guess we need to write some infrastructure code to collect the outputs of all 27 models as input to the fully connected layer. 
+* This one seems eerily straightfoward to me, I guess we need to write some infrastructure code to collect the outputs of all 27 models as input to the fully connected layer. 
 
 # Process Flow From:  
 #### Multi-Modality Cascaded Convolutional Neural Networks for Alzheimer’s Disease Diagnosis 
 
 ### (0)    Preprocessing
-$\bullet$ Raw images are 256x256x**54**, Lui resamples to 256x256x**256** at a density of 1mm$^3$
+* Raw images are 256x256x**54**, Lui resamples to 256x256x**256** at a density of 1mm$^3$
 
-$\hspace{5mm}\bullet$ https://fsl.fmrib.ox.ac.uk/.
+    * https://fsl.fmrib.ox.ac.uk/.
 
-$\bullet$ Downsample both the MRI and PET images into 128x128x128 images.
+* Downsample both the MRI and PET images into 128x128x128 images.
 
-$\bullet$ Remove pixels outside of brain. Remaining images are size 100x81x80
+* Remove pixels outside of brain. Remaining images are size 100x81x80
 
-$\bullet$ Slice Images into 3x3x3 = 27 blocks of size 50x41x40 (the blocks overlap in all directions)
+* Slice Images into 3x3x3 = 27 blocks of size 50x41x40 (the blocks overlap in all directions)
 
 
 
 ### (1)   3D CNN's for feature extraction
 
-$\bullet$ Both MRI and PET Images are fed into separate 3D CNN models for feature extraction
+* Both MRI and PET Images are fed into separate 3D CNN models for feature extraction
 
 >"The deep
 3D CNN is built by alternatively stacking convolutional and
@@ -61,7 +61,7 @@ fully connected and softmax layers for image classification..."
 
 > Page: 300, Section: Feature Learning with 3D CNNs, End of First Paragraph
 
-$\bullet$ Apply Learned Kernel Filters to Images. 
+* Apply Learned Kernel Filters to Images. 
 
 
 >In our implementation, each
@@ -84,12 +84,12 @@ capability.
 
 ### (2)   Multi-Modality Cascaded CNNs 
 
-$\rightarrow$ Purpose: We want to build a model combines the features learned from both the PET scan and MRI scans.
+Purpose: We want to build a model combines the features learned from both the PET scan and MRI scans.
 
 
 
-$\bullet$ For each of the 27 blocks, we will run the corresponding MRI and PET outputs through a series of 2D CNN's.
+* For each of the 27 blocks, we will run the corresponding MRI and PET outputs through a series of 2D CNN's.
 
-$\bullet$ The outputs of all 27 2D-CNN's are then fed into a fully-connected layer followed by a softmax layer.
+* The outputs of all 27 2D-CNN's are then fed into a fully-connected layer followed by a softmax layer.
 
-$\bullet$ The output of the softmax layer is the class likelihoods. 
+* The output of the softmax layer is the class likelihoods. 
