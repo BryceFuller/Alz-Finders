@@ -96,6 +96,8 @@ Purpose: We want to build a model combines the features learned from both the PE
 
 # References:
 
-base_cnn.py
+* base_cnn.py
+
 Author: Tristacheng
+
 Source: https://github.com/Tristacheng/mutimodality_cnn/blob/master/base_cnn.py
