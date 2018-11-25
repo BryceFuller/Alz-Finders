@@ -7,9 +7,7 @@ Predicting the onset of Alzheimer's Disease using MRI &amp; PET scans.
 
 **For every step, make certain that you document your steps and save your code in a jupyter notebook. **
   
-```diff
-- (0)
-```
+### (0)
 * GET ACCESS TO ADNI (Ghosh has been emailed)
 
 * Figure out how the data is formatted and how we access it
