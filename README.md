@@ -93,3 +93,9 @@ Purpose: We want to build a model combines the features learned from both the PE
 * The outputs of all 27 2D-CNN's are then fed into a fully-connected layer followed by a softmax layer.
 
 * The output of the softmax layer is the class likelihoods. 
+
+# References:
+
+base_cnn.py
+Author: Tristacheng
+Source: https://github.com/Tristacheng/mutimodality_cnn/blob/master/base_cnn.py
