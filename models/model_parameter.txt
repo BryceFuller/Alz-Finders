@@ -1,0 +1,11 @@
+************CNN model parameter************ 
+Number of Convolution layer :     4
+Input shape :                     (1, 49, 39, 38)
+Number of kernal per layer ï¼?    (6, 12, 18, 18)
+Kernel size per layer :           (3, 3, 3)
+Pool size per layer :             (2, 2, 2)
+Activation function per layer :   tanh
+Number of full-connect layer :    64
+Coefficient of L1 regularizer :   0.01
+Coefficient of L2 regularizer :   0.3
+Output :                          2 classes
