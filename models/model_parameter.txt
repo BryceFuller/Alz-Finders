@@ -1,6 +1,6 @@
 ************CNN model parameter************ 
 Number of Convolution layer :     4
-Input shape :                     (49, 39, 38, 1)
+Input shape :                     (40, 48, 48, 1)
 Number of kernal per layer ï¼?    (6, 12, 18, 18)
 Kernel size per layer :           (3, 3, 3)
 Pool size per layer :             (2, 2, 2)
